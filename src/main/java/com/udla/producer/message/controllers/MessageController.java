@@ -22,9 +22,14 @@ public class MessageController {
         return ResponseEntity.ok(this.messageService.sendFanoutMessage(message));
     }
 
-    @PostMapping("/sendTopic")
-    public ResponseEntity<MessageModel> sendTopicMessage(@RequestBody MessageModel message){
-        return ResponseEntity.ok(this.messageService.sendTopicMessage(message));
+    @PostMapping("/sendTopicSale")
+    public ResponseEntity<MessageModel> sendTopicMessageSale(@RequestBody MessageModel message){
+        return ResponseEntity.ok(this.messageService.sendTopicMessage(message,"share.message.sales"));
+    }
+
+    @PostMapping("/sendTopicPurchase")
+    public ResponseEntity<MessageModel> sendTopicMessagePurchase(@RequestBody MessageModel message){
+        return ResponseEntity.ok(this.messageService.sendTopicMessage(message,"share.message.purchases"));
     }
 
 

@@ -18,8 +18,8 @@ public class MessageService {
         return messageModel ;
     }
 
-    public  MessageModel sendTopicMessage(MessageModel messageModel){
-        this.publisher.sendTopicMessage(messageModel, "share.*.sales");
+    public  MessageModel sendTopicMessage(MessageModel messageModel, String routingkey){
+        this.publisher.sendTopicMessage(messageModel, routingkey);
         return messageModel;
     }
 }

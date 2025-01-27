@@ -17,7 +17,8 @@ import org.springframework.context.annotation.Configuration;
 public class PublisherConfiguration {
     public static String EXCHANGE_TOPIC = "notification.purchases";
     public static String EXCHANGE_FANOUT = "notification.sales";
-    public static String ROUTING_KEY = "share.*.sales";
+    public static String ROUTING_KEY_SALES = "share.*.sales";
+    public static String ROUTING_KEY_PURCHASES = "share.*.purchases";
     public static String QUEUE_SALES = "sales.queue";
     public static String QUEUE_PURCHASES = "purchases.queue";
 
@@ -65,7 +66,12 @@ public class PublisherConfiguration {
      */
     @Bean
     public Binding bindingSalesQueueTopic(TopicExchange topicExchange, Queue salesQueue) {
-        return BindingBuilder.bind(salesQueue).to(topicExchange).with(ROUTING_KEY);
+        return BindingBuilder.bind(salesQueue).to(topicExchange).with(ROUTING_KEY_SALES);
+    }
+
+    @Bean
+    public Binding bindingPurchasesQueueTopic(TopicExchange topicExchange, Queue purchasesQueue) {
+        return BindingBuilder.bind(purchasesQueue).to(topicExchange).with(ROUTING_KEY_PURCHASES);
     }
 
     /**
